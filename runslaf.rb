@@ -6,6 +6,8 @@
 # 
 # SLAF plugins can log access events directly to syslog by using the Slaf.log(plugin, target file).
 
+$LOAD_PATH << "lib"
+
 require 'slaf'
 
 file = nil
@@ -57,4 +59,3 @@ elsif ARGV.size != 0
 elsif ARGV.size == 0
     puts "Missing paramater. Use with -h or --help for more information."
 end
-
