@@ -4,3 +4,4 @@ http://code.google.com/p/slaf/
 
 CHANGELOG:
 - 2010/04/06 - Initial code import
+- 2010/04/08 - Made runtime path configurable in slaf.cfg
