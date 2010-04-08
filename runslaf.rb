@@ -6,8 +6,6 @@
 # 
 # SLAF plugins can log access events directly to syslog by using the Slaf.log(plugin, target file).
 
-$LOAD_PATH << "lib"
-
 require 'slaf'
 
 file = nil
