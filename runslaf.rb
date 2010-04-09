@@ -15,14 +15,26 @@ show_white = false
 plugin = File.basename($0)
 command = SLAF::Commands.new(plugin)
 
+# Shows the current whitelist
+def show_whitelist(command, plugin)
+    command.show_whitelist(plugin)
+end
+
+# Show help output
+def help
+    puts
+    puts "Secure Log Access Framework."
+    puts "----------------------------"
+    puts "[Commandname] --whitelist | Display a list of all files whitelisted for [Commandname]"
+    puts "[Commandname] [target]    | Execute [Commandname] on [target]"
+    puts
+end
+
+help if ARGV.size == 0
+
 ARGV.each do |arg|
     if arg == "-h" || arg == "--help"
-        puts
-        puts "Secure Log Access Framework."
-        puts "----------------------------"
-        puts "[Commandname] --whitelist | Display a list of all files whitelisted for [Commandname]"
-        puts "[Commandname] [target]    | Execute [Commandname] on [target]"
-        puts
+        help
         exit 0
     
     elsif arg =~ /[<>`|]/
@@ -37,7 +49,8 @@ ARGV.each do |arg|
         exit 1
 
     elsif arg =~ /^-w/ || arg =~ /^--whitelist/
-        show_white = true
+        show_whitelist(command, plugin)
+        exit
 
     elsif SLAF.command_options[plugin] == false
         unless arg =~/^-/
@@ -50,10 +63,4 @@ ARGV.each do |arg|
     end
 end
 
-if show_white
-    command.show_whitelist(plugin)
-elsif ARGV.size != 0
-    command.execute(file, operands)
-elsif ARGV.size == 0
-    puts "Missing paramater. Use with -h or --help for more information."
-end
+command.execute(file, operands) if file
