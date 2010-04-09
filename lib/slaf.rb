@@ -5,7 +5,7 @@ require 'slaf/commands'
 module SLAF
     #Logs an event to syslog
     def self.log(command, target)
-        Syslog.open("SLA")
+        Syslog.open("SLAF")
         Syslog.crit("User: #{ENV["SUDO_USER"]} User id: #{ENV["SUDO_UID"]} Executing #{command} on target #{target}")
         Syslog.close
     end
