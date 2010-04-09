@@ -30,8 +30,6 @@ def help
     puts
 end
 
-help if ARGV.size == 0
-
 ARGV.each do |arg|
     if arg == "-h" || arg == "--help"
         help
