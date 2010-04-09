@@ -63,4 +63,9 @@ ARGV.each do |arg|
     end
 end
 
-command.execute(file, operands) if file
+if file
+    command.execute(file, operands)
+else
+    help
+end
+
